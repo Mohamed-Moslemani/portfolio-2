@@ -1,0 +1,221 @@
+/* ---------------------------------------------------------------
+   components.css: footer, loader, back-to-top, image fades.
+   --------------------------------------------------------------- */
+
+/* ---- images ------------------------------------------------------ */
+
+.lazy-img {
+  opacity: 0;
+  transition: opacity var(--t-slow) var(--ease);
+}
+
+.lazy-img.is-loaded {
+  opacity: 1;
+}
+
+/* ---- footer ------------------------------------------------------- */
+
+.footer {
+  padding-bottom: calc(env(safe-area-inset-bottom) + clamp(2rem, 4vw, 3rem));
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: start;
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.footer__name {
+  color: var(--fg-primary);
+  letter-spacing: 0.14em;
+}
+
+.footer__place {
+  margin-top: 0.35rem;
+  color: var(--fg-muted);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.5rem;
+}
+
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--fg-secondary);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.footer__link:hover {
+  color: var(--accent);
+}
+
+.footer__link svg {
+  transition: transform var(--t-base) var(--ease);
+}
+
+.footer__link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.footer__end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.footer__end p:first-child {
+  color: var(--fg-muted);
+}
+
+.footer__tagline {
+  font-size: 1rem;
+  color: var(--fg-secondary);
+}
+
+/* ---- 404 -------------------------------------------------------------- */
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding-bottom: clamp(4rem, 12vw, 8rem);
+}
+
+.notfound__lede {
+  max-width: 52ch;
+}
+
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: var(--sp-2);
+}
+
+/* ---- back to top ---------------------------------------------------- */
+
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: calc(env(safe-area-inset-bottom) + clamp(1rem, 3vw, 2rem));
+  z-index: calc(var(--z-nav) - 1);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--bg-raised) 88%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--fg-secondary);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity var(--t-base) var(--ease),
+    transform var(--t-base) var(--ease),
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+}
+
+/* ---- loader ---------------------------------------------------------- */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  background: var(--bg-page);
+  transition:
+    opacity 400ms var(--ease),
+    visibility 400ms var(--ease);
+}
+
+.loader.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader__mark {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.loader__j {
+  color: var(--fg-primary);
+  animation: loader-fade 500ms var(--ease-out) both;
+}
+
+.loader__slash {
+  color: var(--accent);
+  margin-left: 2px;
+  transform: skewX(-8deg);
+  animation: loader-fade 500ms var(--ease-out) 120ms both;
+}
+
+.loader__stroke {
+  width: 180px;
+  height: 8px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.loader__stroke path {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: loader-draw 700ms var(--ease-out) 150ms forwards;
+}
+
+@keyframes loader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loader-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    display: none;
+  }
+}

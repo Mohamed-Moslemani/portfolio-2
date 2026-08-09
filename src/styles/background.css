@@ -1,0 +1,231 @@
+/* ---------------------------------------------------------------
+   background.css: the ambient layer.
+
+   Fixed behind everything, never interactive, and quiet enough that
+   body copy still passes contrast on top of it.
+   --------------------------------------------------------------- */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+/* ---- drifting colour fields -------------------------------------- */
+
+.scene__field {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.scene__field--a {
+  top: -18vh;
+  left: -10vw;
+  width: 62vw;
+  height: 62vh;
+  background: radial-gradient(circle, var(--tone-mint), transparent 68%);
+  opacity: 0.22;
+  animation: field-drift-a 34s ease-in-out infinite alternate;
+}
+
+.scene__field--b {
+  top: 26vh;
+  right: -16vw;
+  width: 54vw;
+  height: 58vh;
+  background: radial-gradient(circle, var(--tone-blush), transparent 68%);
+  opacity: 0.16;
+  animation: field-drift-b 42s ease-in-out infinite alternate;
+}
+
+.scene__field--c {
+  bottom: -22vh;
+  left: 18vw;
+  width: 58vw;
+  height: 56vh;
+  background: radial-gradient(circle, var(--tone-lilac), transparent 68%);
+  opacity: 0.14;
+  animation: field-drift-c 50s ease-in-out infinite alternate;
+}
+
+[data-theme='light'] .scene__field--a {
+  opacity: 0.15;
+}
+
+[data-theme='light'] .scene__field--b {
+  opacity: 0.12;
+}
+
+[data-theme='light'] .scene__field--c {
+  opacity: 0.1;
+}
+
+@keyframes field-drift-a {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6vw, 8vh, 0) scale(1.12);
+  }
+}
+
+@keyframes field-drift-b {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  to {
+    transform: translate3d(-7vw, -6vh, 0) scale(1);
+  }
+}
+
+@keyframes field-drift-c {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5vw, -9vh, 0) scale(1.14);
+  }
+}
+
+/* ---- the drawing --------------------------------------------------- */
+
+.scene__art {
+  position: absolute;
+  right: -2vw;
+  bottom: -4vh;
+  width: min(760px, 62vw);
+  height: auto;
+  color: var(--fg-primary);
+  opacity: 0.14;
+}
+
+[data-theme='light'] .scene__art {
+  color: var(--accent-dark);
+  opacity: 0.16;
+}
+
+/* The whole figure breathes, very slightly. */
+.scene__float {
+  animation: scene-float 14s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+@keyframes scene-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* Screen light, as if something just rendered. */
+.scene__screen {
+  color: var(--accent);
+  animation: screen-glow 7s ease-in-out infinite;
+}
+
+@keyframes screen-glow {
+  0%,
+  100% {
+    fill-opacity: 0.1;
+  }
+  42% {
+    fill-opacity: 0.3;
+  }
+  46% {
+    fill-opacity: 0.16;
+  }
+  60% {
+    fill-opacity: 0.26;
+  }
+}
+
+.scene__hair {
+  color: var(--accent);
+}
+
+/* Steam rises and fades, each wisp offset from the last. */
+.scene__steam path {
+  animation: steam-rise 5.5s ease-in-out infinite;
+  animation-delay: calc(var(--s) * 1.3s);
+  transform-box: fill-box;
+  transform-origin: bottom center;
+}
+
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scaleY(0.7);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px) scaleY(1.2);
+  }
+}
+
+/* ---- sparkles -------------------------------------------------------- */
+
+.scene__sparkles path {
+  color: var(--accent);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sparkle-twinkle 6s ease-in-out infinite;
+  animation-delay: var(--d);
+  opacity: 0;
+}
+
+@keyframes sparkle-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+    scale: 1;
+  }
+}
+
+/* ---- restraint --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .scene__art {
+    width: 118vw;
+    right: -34vw;
+    bottom: -2vh;
+    opacity: 0.09;
+  }
+
+  [data-theme='light'] .scene__art {
+    opacity: 0.11;
+  }
+
+  .scene__field {
+    filter: blur(70px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene__field,
+  .scene__float,
+  .scene__screen,
+  .scene__steam path,
+  .scene__sparkles path {
+    animation: none;
+  }
+
+  .scene__sparkles path {
+    opacity: 0.6;
+  }
+}

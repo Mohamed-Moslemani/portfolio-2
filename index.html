@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Jana Jaffal / Software, Data &amp; Art</title>
+    <meta
+      name="description"
+      content="Portfolio of Jana Jaffal, a computer science graduate based in Beirut working across data, AI and software, with a collection of original artwork."
+    />
+    <meta name="author" content="Jana Jaffal" />
+    <meta name="theme-color" content="#070A08" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F4EF" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- TODO: add <link rel="canonical" href="https://<domain>/" /> once the domain is known. -->
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jana Jaffal" />
+    <meta property="og:title" content="Jana Jaffal / Software, Data &amp; Art" />
+    <meta
+      property="og:description"
+      content="Computer science graduate working across data, AI and software, and an artist whenever there's a pencil nearby."
+    />
+    <meta property="og:locale" content="en_US" />
+    <!-- TODO: add og:image (1200x630) and og:url once assets / domain exist. -->
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jana Jaffal / Software, Data &amp; Art" />
+    <meta
+      name="twitter:description"
+      content="Computer science graduate working across data, AI and software, and an artist whenever there's a pencil nearby."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Resolve the theme before first paint so there is no flash of the wrong palette.
+      (function () {
+        try {
+          // ?theme=light|dark forces a theme for this page view without
+          // persisting it, handy for previews and screenshots.
+          var forced = new URLSearchParams(location.search).get('theme')
+          var stored = localStorage.getItem('jj-theme')
+          var theme =
+            forced === 'light' || forced === 'dark'
+              ? forced
+              : stored === 'light' || stored === 'dark'
+                ? stored
+                : window.matchMedia('(prefers-color-scheme: light)').matches
+                  ? 'light'
+                  : 'dark'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

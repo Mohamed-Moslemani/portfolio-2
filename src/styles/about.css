@@ -1,0 +1,290 @@
+/* ---------------------------------------------------------------
+   about.css: prose, the interests selector, the toolkit.
+   --------------------------------------------------------------- */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.about__prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  max-width: 52ch;
+}
+
+.about__prose .t-lead:first-child {
+  color: var(--fg-primary);
+}
+
+.about__languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--sp-5);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.about__languages li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-block: 0.3rem;
+}
+
+.about__languages .t-mono-sm {
+  color: var(--accent);
+}
+
+/* ---- interests ----------------------------------------------------- */
+
+.interests {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: start;
+}
+
+.interests__list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+
+.interests__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  color: var(--fg-secondary);
+  transition:
+    color var(--t-fast) var(--ease),
+    padding-left var(--t-base) var(--ease);
+}
+
+.interests__item:hover {
+  color: var(--fg-primary);
+  padding-left: 0.55rem;
+}
+
+.interests__item.is-active {
+  color: var(--fg-primary);
+  padding-left: 0.55rem;
+}
+
+/* One colour per interest, the list is the most personal thing on
+   the page, so it gets to be the most colourful. */
+.interests__item:nth-child(1) {
+  --accent: var(--tone-mint);
+}
+
+.interests__item:nth-child(2) {
+  --accent: var(--tone-blush);
+}
+
+.interests__item:nth-child(3) {
+  --accent: var(--tone-sky);
+}
+
+.interests__item:nth-child(4) {
+  --accent: var(--tone-lilac);
+}
+
+.interests__item:nth-child(5) {
+  --accent: var(--tone-amber);
+}
+
+.interests__index {
+  color: var(--fg-muted);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.interests__item:hover .interests__index,
+.interests__item.is-active .interests__index {
+  color: var(--accent);
+}
+
+.interests__item.is-active {
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border-radius: var(--r-xs);
+}
+
+.interests__label {
+  font-size: 1.02rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.interests__item.is-active .interests__label {
+  font-weight: 500;
+}
+
+.interests__mark {
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--t-base) var(--ease);
+}
+
+.interests__item.is-active .interests__mark {
+  transform: scaleX(1);
+}
+
+.interests__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.15rem, 2.5vw, 1.75rem);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-left: 2px solid color-mix(in srgb, var(--accent) 48%, transparent);
+  border-radius: var(--r-sm);
+  min-height: 100%;
+  animation: panel-in 320ms var(--ease-out);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.interests__line {
+  font-size: 1.25rem;
+  color: var(--fg-primary);
+}
+
+/* ---- toolkit --------------------------------------------------------- */
+
+.skills {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.skills__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.skills__head > span:first-child {
+  color: var(--accent);
+  flex: none;
+}
+
+.skills__rule {
+  flex: 1;
+}
+
+.skills__groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.skills__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.skills__label {
+  color: var(--accent);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line-faint);
+}
+
+/* Each group of the toolkit gets its own colour, so the block reads
+   as six things rather than one long list. */
+.skills__group:nth-child(6n + 1) {
+  --accent: var(--tone-mint);
+}
+
+.skills__group:nth-child(6n + 2) {
+  --accent: var(--tone-sky);
+}
+
+.skills__group:nth-child(6n + 3) {
+  --accent: var(--tone-blush);
+}
+
+.skills__group:nth-child(6n + 4) {
+  --accent: var(--tone-amber);
+}
+
+.skills__group:nth-child(6n + 5) {
+  --accent: var(--tone-lilac);
+}
+
+.skills__group:nth-child(6n + 6) {
+  --accent: var(--tone-mint);
+}
+
+.skills__group .chip {
+  transition:
+    border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    background-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.skills__group .chip:hover {
+  color: var(--fg-primary);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interests__panel {
+    animation: none;
+  }
+}
+
+/* ---- toolkit logos ---------------------------------------------- */
+
+.chip--tech {
+  padding-left: 0.5rem;
+  gap: 0.45rem;
+}
+
+.tech-icon {
+  flex: none;
+  color: var(--accent);
+  opacity: 0.9;
+  transition:
+    opacity var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.chip--tech:hover .tech-icon {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* Lettered fallback keeps unmapped skills on the same baseline grid. */
+.tech-icon--letter {
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  line-height: 1;
+}

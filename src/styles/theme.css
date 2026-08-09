@@ -1,0 +1,219 @@
+/* ---------------------------------------------------------------
+   theme.css: the single source of truth for design tokens.
+   Nothing else in the codebase should declare a raw colour.
+   --------------------------------------------------------------- */
+
+:root {
+  /* ---- type ------------------------------------------------- */
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+
+  /* ---- layout ----------------------------------------------- */
+  --maxw: 1180px;
+  --maxw-wide: 1380px;
+  --maxw-prose: 62ch;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --nav-h: 68px;
+
+  --section-pad: clamp(3.75rem, 7.5vw, 6.5rem);
+  --section-gap: clamp(2rem, 4vw, 3rem);
+
+  /* ---- spacing scale ---------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  /* ---- radius ------------------------------------------------ */
+  /* Softened: editorial, but friendly. Chips go full pill. */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+
+  /* ---- playful tilts ------------------------------------------ */
+  --tilt-a: -1.2deg;
+  --tilt-b: 1.4deg;
+
+  /* ---- motion ------------------------------------------------ */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 140ms;
+  --t-base: 240ms;
+  --t-slow: 460ms;
+
+  /* ---- elevation --------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28);
+  --shadow-md: 0 14px 34px -18px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 36px 80px -34px rgb(0 0 0 / 0.72);
+
+  /* ---- z-index ------------------------------------------------ */
+  --z-nav: 100;
+  --z-menu: 110;
+  --z-lightbox: 200;
+  --z-loader: 300;
+}
+
+/* =================================================================
+   DARK: the primary experience
+   ================================================================= */
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-page: #070a08;
+  --bg-raised: #0b100d;
+  --bg-card: #101611;
+  --bg-card-hover: #151d17;
+  --bg-inset: #050806;
+
+  --fg-primary: #ecf2ed;
+  --fg-secondary: #a2ada5;
+  --fg-muted: #657067;
+
+  --accent: #62d989;
+  --accent-dark: #2f9e5b;
+  --accent-bright: #8af0a7;
+  --accent-contrast: #04170b;
+
+  --accent-wash: rgb(98 217 137 / 0.08);
+  --accent-wash-strong: rgb(98 217 137 / 0.16);
+  --accent-line: rgb(98 217 137 / 0.32);
+
+  /* A soft blush that keeps the green company. Used in small doses:
+     sparkles, the interests index, the "now watching" sticker. */
+  --accent-2: #f3a8c4;
+  --accent-2-soft: rgb(243 168 196 / 0.14);
+  --accent-2-line: rgb(243 168 196 / 0.34);
+
+  /* Section tones. Green leads; the rest keep it company so the page
+     has weather instead of one flat colour. */
+  --tone-mint: #62d989;
+  --tone-blush: #f3a8c4;
+  --tone-amber: #f6c177;
+  --tone-lilac: #b6a6f7;
+  --tone-sky: #7ad1ea;
+
+  --glow: radial-gradient(circle at 50% 50%, rgb(98 217 137 / 0.16), transparent 70%);
+
+  --line: rgb(255 255 255 / 0.07);
+  --line-strong: rgb(255 255 255 / 0.14);
+  --line-faint: rgb(255 255 255 / 0.04);
+
+  --overlay: rgb(4 7 5 / 0.86);
+  --grain-opacity: 0.05;
+  --placeholder-ink: rgb(236 242 237 / 0.2);
+}
+
+/* =================================================================
+   LIGHT: warm paper, forest ink
+   ================================================================= */
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-page: #faf6ee;
+  --bg-raised: #f4f0e6;
+  --bg-card: #fffdf8;
+  --bg-card-hover: #fdfaf2;
+  --bg-inset: #ece7db;
+
+  --fg-primary: #14180f;
+  --fg-secondary: #4a5348;
+  --fg-muted: #79806f;
+
+  --accent: #1f6b3d;
+  --accent-dark: #164f2d;
+  --accent-bright: #2f9e5b;
+  --accent-contrast: #ffffff;
+
+  --accent-wash: rgb(31 107 61 / 0.07);
+  --accent-wash-strong: rgb(31 107 61 / 0.13);
+  --accent-line: rgb(31 107 61 / 0.34);
+
+  --accent-2: #c4497c;
+  --accent-2-soft: rgb(196 73 124 / 0.1);
+  --accent-2-line: rgb(196 73 124 / 0.3);
+
+  /* Light mode needs the same hues pushed darker to stay readable. */
+  --tone-mint: #1f6b3d;
+  --tone-blush: #c4497c;
+  --tone-amber: #a36a12;
+  --tone-lilac: #6b53c9;
+  --tone-sky: #16708c;
+
+  --glow: radial-gradient(circle at 50% 50%, rgb(31 107 61 / 0.12), transparent 70%);
+
+  --line: rgb(20 24 15 / 0.11);
+  --line-strong: rgb(20 24 15 / 0.2);
+  --line-faint: rgb(20 24 15 / 0.06);
+
+  --overlay: rgb(28 30 24 / 0.72);
+  --grain-opacity: 0.035;
+  --placeholder-ink: rgb(20 24 15 / 0.16);
+
+  --shadow-sm: 0 1px 2px rgb(20 24 15 / 0.06);
+  --shadow-md: 0 14px 30px -20px rgb(20 24 15 / 0.28);
+  --shadow-lg: 0 34px 70px -34px rgb(20 24 15 / 0.3);
+}
+
+/* =================================================================
+   SECTION TONES
+
+   Setting --accent inside a scope re-tints everything underneath it,
+   because every component reads the token rather than a literal.
+   One attribute on a <section> recolours its label, rules, chips,
+   bullets, hovers and focus ring together.
+   ================================================================= */
+
+[data-tone='mint'] {
+  --accent: var(--tone-mint);
+}
+
+[data-tone='blush'] {
+  --accent: var(--tone-blush);
+}
+
+[data-tone='amber'] {
+  --accent: var(--tone-amber);
+}
+
+[data-tone='lilac'] {
+  --accent: var(--tone-lilac);
+}
+
+[data-tone='sky'] {
+  --accent: var(--tone-sky);
+}
+
+[data-tone] {
+  --accent-bright: color-mix(in srgb, var(--accent) 72%, white);
+  --accent-dark: color-mix(in srgb, var(--accent) 76%, black);
+  --accent-wash: color-mix(in srgb, var(--accent) 10%, transparent);
+  --accent-wash-strong: color-mix(in srgb, var(--accent) 18%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 38%, transparent);
+  --glow: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+}
+
+[data-theme='dark'] [data-tone] {
+  --accent-contrast: #08130c;
+}
+
+[data-theme='light'] [data-tone] {
+  --accent-contrast: #ffffff;
+  --accent-wash: color-mix(in srgb, var(--accent) 8%, transparent);
+  --accent-wash-strong: color-mix(in srgb, var(--accent) 14%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 34%, transparent);
+}

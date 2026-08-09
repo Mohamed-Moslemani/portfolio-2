@@ -1,0 +1,178 @@
+/* ---------------------------------------------------------------
+   work.css: project case studies. Large panels, alternating sides,
+   nothing that bounces.
+   --------------------------------------------------------------- */
+
+.work__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  overflow: hidden;
+}
+
+.project--flip .project__visual {
+  order: 2;
+  border-right: none;
+  border-left: 1px solid var(--line);
+}
+
+.project__visual {
+  position: relative;
+  min-height: 100%;
+  background: var(--bg-inset);
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.project__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.project:hover .project__img {
+  transform: scale(1.03);
+}
+
+.project:hover {
+  border-color: var(--accent-line);
+}
+
+/* ---- the drawn stand-in for a missing screenshot ---------------- */
+
+.project__schematic {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 230px;
+  padding: var(--sp-5);
+  color: var(--placeholder-ink);
+  overflow: hidden;
+}
+
+.project__schematic-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 20%, transparent 80%);
+}
+
+.project__schematic-index {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: clamp(3.2rem, 7vw, 5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--placeholder-ink);
+  transition: -webkit-text-stroke-color var(--t-base) var(--ease);
+}
+
+.project:hover .project__schematic-index {
+  -webkit-text-stroke-color: var(--accent-line);
+}
+
+.project__schematic-label {
+  position: absolute;
+  left: var(--sp-5);
+  bottom: var(--sp-4);
+  color: var(--fg-muted);
+  max-width: calc(100% - var(--sp-6));
+}
+
+/* ---- body -------------------------------------------------------- */
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: clamp(1.5rem, 3.4vw, 2.6rem);
+}
+
+.project__top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.project__index {
+  color: var(--accent);
+}
+
+.project__rule {
+  width: 22px;
+  height: 1px;
+  background: var(--line-strong);
+  flex: none;
+}
+
+.project__category {
+  color: var(--fg-muted);
+  letter-spacing: 0.1em;
+}
+
+.project__name {
+  margin-top: -0.25rem;
+}
+
+.project__subtitle {
+  margin-top: -0.85rem;
+  font-size: 1.1rem;
+  color: var(--fg-secondary);
+}
+
+.project__desc {
+  max-width: 62ch;
+}
+
+.project__highlights {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  width: 100%;
+}
+
+.project__highlights li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: baseline;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--fg-secondary);
+}
+
+.project__bullet {
+  width: 10px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.7;
+  transform: translateY(-3px);
+}
+
+.project__tech {
+  margin-top: 0.15rem;
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+}
+
+.project__nolink {
+  margin-top: 0.35rem;
+  color: var(--fg-muted);
+  opacity: 0.8;
+}

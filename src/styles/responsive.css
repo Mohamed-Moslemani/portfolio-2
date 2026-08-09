@@ -1,0 +1,358 @@
+/* ---------------------------------------------------------------
+   responsive.css: the layout is designed at each size, not just
+   collapsed. Loaded last so it always wins.
+   Breakpoints: 1280 · 1024 · 900 · 768 · 560 · 400
+   --------------------------------------------------------------- */
+
+/* ================= ≤ 1280 ================= */
+@media (max-width: 1280px) {
+  :root {
+    --maxw: 1080px;
+  }
+
+  .hero__container {
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+  }
+}
+
+/* ================= ≤ 1024 ================= */
+@media (max-width: 1024px) {
+  .edu,
+  .about,
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about__prose {
+    max-width: 62ch;
+  }
+
+  .contact__note {
+    margin-top: 0;
+  }
+
+  .gallery__grid {
+    columns: 2;
+  }
+
+  .artwork__layout {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  }
+
+  .project {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+/* ================= ≤ 900 : navigation flips ================= */
+@media (max-width: 900px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__burger {
+    display: grid;
+  }
+
+  .navbar__inner {
+    justify-content: space-between;
+  }
+
+  /* Hero stacks: words first, drawing underneath. */
+  .hero__container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .hero__visual {
+    max-width: 460px;
+    width: 100%;
+  }
+
+  .hero__panel {
+    aspect-ratio: 4 / 3.4;
+  }
+
+  /* Project cards: visual on top, always. */
+  .project,
+  .project--flip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project--flip .project__visual {
+    order: 0;
+    border-left: none;
+  }
+
+  .project__visual {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    aspect-ratio: 16 / 7;
+    min-height: 0;
+  }
+
+  .project__schematic {
+    min-height: 0;
+  }
+
+  /* Art wall: two even columns, one full-width piece. */
+  .art-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .art-grid__cell:nth-child(1),
+  .art-grid__cell:nth-child(2),
+  .art-grid__cell:nth-child(3),
+  .art-grid__cell:nth-child(4),
+  .art-grid__cell:nth-child(n + 6) {
+    grid-column: span 1;
+    margin-top: 0;
+  }
+
+  .art-grid__cell:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .lightbox__figure {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interests {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .artwork__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .artwork__info {
+    position: static;
+  }
+}
+
+/* ================= ≤ 768 ================= */
+@media (max-width: 768px) {
+  :root {
+    --nav-h: 60px;
+    --section-pad: clamp(3.5rem, 12vw, 5.5rem);
+  }
+
+  .section__title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero__fact {
+    padding: 0.75rem 0.75rem 0.75rem 0;
+  }
+
+  .hero__fact:nth-child(odd) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .hero__fact:nth-child(even) {
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .hero__fact:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+
+  .skills__groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline__head {
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .timeline__when {
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.9rem;
+  }
+
+  .volunteering {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+
+  .footer__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-5);
+  }
+
+  .footer__links {
+    justify-content: flex-start;
+    gap: 0.35rem 1.15rem;
+  }
+
+  .footer__end {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .gallery__grid {
+    columns: 2;
+    column-gap: 1rem;
+  }
+}
+
+/* ================= ≤ 560 : phones ================= */
+@media (max-width: 560px) {
+  :root {
+    --gutter: 1.15rem;
+  }
+
+  .hero {
+    padding-top: calc(var(--nav-h) + 2.25rem);
+  }
+
+  .hero__title {
+    font-size: clamp(2.4rem, 12.5vw, 3.4rem);
+  }
+
+  .hero__actions {
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .hero__status {
+    position: static;
+    order: 3;
+    margin-top: 0.85rem;
+    align-self: flex-start;
+    width: fit-content;
+  }
+
+  .hero__visual {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__panel {
+    order: 1;
+  }
+
+  /* One column, with a single controlled 2-up row. */
+  .art-grid {
+    gap: 0.9rem;
+  }
+
+  .art-grid__cell,
+  .art-grid__cell:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .art-grid__cell:nth-child(3),
+  .art-grid__cell:nth-child(4) {
+    grid-column: span 1;
+  }
+
+  .art-grid__cell:nth-child(3) .artcard__frame,
+  .art-grid__cell:nth-child(4) .artcard__frame {
+    aspect-ratio: 1 / 1;
+  }
+
+  .gallery__grid {
+    columns: 1;
+  }
+
+  .artwork__nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lightbox__nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .lightbox__inner {
+    max-height: 94svh;
+  }
+
+  .interests__panel {
+    min-height: 0;
+  }
+
+  .about__languages {
+    gap: 0 1.15rem;
+  }
+
+  .contact__email {
+    font-size: clamp(1.05rem, 6.4vw, 1.5rem);
+  }
+}
+
+/* ================= ≤ 400 : small phones ================= */
+@media (max-width: 400px) {
+  :root {
+    --gutter: 1rem;
+  }
+
+  .hero__stack {
+    gap: 0.35rem;
+  }
+
+  .art-grid__cell,
+  .art-grid__cell:nth-child(3),
+  .art-grid__cell:nth-child(4),
+  .art-grid__cell:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .mobile-menu__link {
+    font-size: 1.4rem;
+  }
+
+  .project__body {
+    padding: 1.15rem;
+  }
+
+  .timeline {
+    padding-left: 1.15rem;
+  }
+}
+
+/* ---- hover-less devices: no hover-only affordances -------------- */
+@media (hover: none) {
+  .artcard__zoom,
+  .artcard__veil {
+    opacity: 1;
+  }
+
+  .panel--ticks::before,
+  .panel--ticks::after {
+    opacity: 1;
+  }
+}
+
+/* ================= ≤ 340 : the narrowest phones ================= */
+@media (max-width: 340px) {
+  .hero__facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero__fact,
+  .hero__fact:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .hero__fact + .hero__fact {
+    border-top: 1px solid var(--line);
+  }
+}

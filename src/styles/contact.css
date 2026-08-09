@@ -1,0 +1,100 @@
+/* ---------------------------------------------------------------
+   contact.css: one large address, a couple of quiet links.
+   --------------------------------------------------------------- */
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: stretch;
+}
+
+.contact__primary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-3);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.contact__label {
+  color: var(--accent);
+}
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: clamp(1.15rem, 3.4vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--fg-primary);
+  word-break: break-word;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.contact__email:hover {
+  color: var(--accent);
+}
+
+.contact__email-arrow {
+  flex: none;
+  transition: transform var(--t-base) var(--ease);
+}
+
+.contact__email:hover .contact__email-arrow {
+  transform: translate(3px, -3px);
+}
+
+.contact__hint {
+  color: var(--fg-muted);
+}
+
+.contact__channels {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 1rem);
+}
+
+.contact__channel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  color: var(--fg-secondary);
+}
+
+.contact__channel:hover {
+  color: var(--fg-primary);
+  border-color: var(--accent-line);
+}
+
+.contact__channel-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.contact__channel-arrow {
+  margin-left: auto;
+  color: var(--fg-muted);
+  transition: transform var(--t-base) var(--ease);
+}
+
+.contact__channel:hover .contact__channel-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.contact__note {
+  padding: 0.95rem 1.15rem;
+  background: transparent;
+  border-style: dashed;
+}
+
+.contact__note p {
+  color: var(--fg-muted);
+  text-transform: none;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+}

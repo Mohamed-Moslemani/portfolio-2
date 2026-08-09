@@ -1,0 +1,149 @@
+/* ---------------------------------------------------------------
+   experience.css: vertical timeline and the understated
+   volunteering line beneath it.
+   --------------------------------------------------------------- */
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  list-style: none;
+  padding-left: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* The rail. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  left: 5px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-line),
+    var(--line) 22%,
+    var(--line) 78%,
+    transparent
+  );
+}
+
+.timeline__item {
+  position: relative;
+}
+
+.timeline__marker {
+  position: absolute;
+  top: 1.6rem;
+  left: calc(clamp(1.5rem, 3vw, 2.25rem) * -1);
+  display: grid;
+  place-items: center;
+  width: 11px;
+  height: 11px;
+}
+
+.timeline__dot {
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  border-radius: 1px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 4px var(--bg-page);
+}
+
+.timeline__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: clamp(1.35rem, 3vw, 2.1rem);
+}
+
+.timeline__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  flex-wrap: wrap;
+}
+
+.timeline__role {
+  margin-top: 0.2rem;
+  color: var(--accent);
+}
+
+.timeline__when {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.timeline__where {
+  text-transform: none;
+  letter-spacing: 0.08em;
+}
+
+.timeline__current {
+  margin-top: 0.15rem;
+}
+
+.timeline__summary {
+  max-width: 68ch;
+}
+
+.timeline__points {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+}
+
+.timeline__points li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--fg-secondary);
+}
+
+.timeline__bullet {
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.75;
+  transform: translateY(-3px);
+}
+
+/* ---- volunteering -------------------------------------------------- */
+
+.volunteering {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+}
+
+.volunteering__label {
+  color: var(--accent);
+  padding-top: 0.15rem;
+}
+
+.volunteering__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 62ch;
+}
+
+.volunteering__period {
+  color: var(--fg-muted);
+  text-transform: none;
+  white-space: nowrap;
+  padding-top: 0.15rem;
+}
