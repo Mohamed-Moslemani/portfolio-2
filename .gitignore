@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Reference / mood-board images kept locally. Never commit unlicensed
+# stock comps: pushing one publishes it, watermark and all.
+/*.webp
+/*.jpg
+/*.png

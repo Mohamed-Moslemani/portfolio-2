@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 812" width="1400" height="812">
+  <defs>
+    <linearGradient id="hijab" x1="0.2" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#2A7A5B"/>
+      <stop offset="55%" stop-color="#1F5D46"/>
+      <stop offset="100%" stop-color="#123B2C"/>
+    </linearGradient>
+    <linearGradient id="hoodie" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2C3437"/>
+      <stop offset="100%" stop-color="#1A2023"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EFC09B"/>
+      <stop offset="100%" stop-color="#D79E77"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0E2019"/>
+      <stop offset="100%" stop-color="#07130F"/>
+    </linearGradient>
+    <linearGradient id="deskTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#252D30"/>
+      <stop offset="100%" stop-color="#171D1F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#62D989" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#62D989" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowWide" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#62D989" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#62D989" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ambient light thrown by the screen -->
+  <ellipse cx="980" cy="470" rx="520" ry="400" fill="url(#glowWide)"/>
+
+  <!-- chair, behind her -->
+  <path d="M300 700V520c0-46 30-76 76-76h48c30 0 52 14 64 36l-40 24c-6-10-14-14-24-14h-48c-22 0-32 14-32 34v176z" fill="#1B2225"/>
+
+  <!-- ============ the figure ============ -->
+
+  <!-- hoodie: torso -->
+  <path d="M404 466c-52 32-74 96-82 158-6 44-8 62-8 76h292c0-42-4-92-16-134-14-50-44-84-84-100z" fill="url(#hoodie)"/>
+  <!-- hoodie: arm reaching to the keyboard -->
+  <path d="M556 492c48 20 94 68 132 120 12 18 18 34 16 48l-52 6c-20-36-56-78-94-106z" fill="url(#hoodie)"/>
+  <!-- hand -->
+  <path d="M652 656c14-6 34-4 48 6 10 8 12 18 6 24-8 8-30 10-46 4-14-6-18-28-8-34z" fill="url(#skin)"/>
+
+  <!-- face: profile. Forehead, brow ridge, bridge, nose, lips, chin. -->
+  <path d="M516 206C538 214 549 238 549 264C549 275 543 281 541 287C550 300 568 320 568 331C568 339 556 342 544 342C552 350 552 358 545 362C551 370 549 380 542 388C538 396 530 402 522 406C500 414 474 402 464 372C450 330 452 250 470 224C482 206 500 198 516 206Z" fill="url(#skin)"/>
+  <!-- brow -->
+  <path d="M494 264c12-9 28-9 40-3" stroke="#8A5A3C" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <!-- eye, closed and turned down to the screen -->
+  <path d="M496 286c8 10 22 12 34 4" stroke="#3A2418" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- nostril -->
+  <path d="M550 340c6 3 11 3 15 1" stroke="#C08A66" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+  <!-- lips -->
+  <path d="M529 363c7-2 13 0 17 3" stroke="#B46A63" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+
+  <!-- hijab: crown, nape and the drape down her back -->
+  <path d="M516 206C496 166 436 152 392 182C354 208 344 256 346 306C348 346 340 376 334 416C324 476 318 540 326 600C330 630 334 648 336 660L578 660C578 612 572 556 556 512C542 472 530 440 516 416C502 396 492 360 486 320C484 280 492 240 516 206Z" fill="url(#hijab)"/>
+  <!-- fold where the chest fabric falls away from her jaw -->
+  <path d="M508 436c6 44-2 82-18 116-14 30-28 60-34 90" stroke="#2F8B67" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+  <!-- fabric folds -->
+  <path d="M392 300c-10 62-20 130-18 196" stroke="#2F8B67" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.55"/>
+  <path d="M438 372c-8 52-14 100-10 148" stroke="#2F8B67" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.35"/>
+  <path d="M452 214c-26 20-40 46-44 78" stroke="#3A9E77" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.4"/>
+  <!-- screen light catching the edge of the fabric beside her face -->
+  <path d="M516 206c-24 34-32 74-30 114 2 36 12 68 30 96" stroke="#8AF0A7" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+  <!-- headphones, worn over the hijab -->
+  <path d="M354 306c-14-96 62-152 152-118" stroke="#12181A" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <path d="M354 306c-14-96 62-152 152-118" stroke="#3A4446" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <rect x="334" y="292" width="66" height="96" rx="30" fill="#12181A"/>
+  <rect x="346" y="306" width="42" height="68" rx="20" fill="none" stroke="#62D989" stroke-width="6" opacity="0.85"/>
+  <!-- boom mic -->
+  <path d="M394 384c42 18 76 40 98 68" stroke="#12181A" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <circle cx="496" cy="456" r="12" fill="#12181A"/>
+
+  <!-- ============ desk ============ -->
+  <rect x="0" y="700" width="1400" height="26" fill="url(#deskTop)"/>
+  <rect x="0" y="726" width="1400" height="12" fill="#0E1315"/>
+
+  <!-- monitor -->
+  <ellipse cx="1000" cy="470" rx="300" ry="220" fill="url(#glow)" opacity="0.55"/>
+  <rect x="820" y="316" width="368" height="292" rx="16" fill="#161D20"/>
+  <rect x="836" y="332" width="336" height="248" rx="8" fill="url(#screen)"/>
+  <!-- code on screen -->
+  <g stroke-linecap="round">
+    <path d="M864 366h60" stroke="#8AF0A7" stroke-width="9"/>
+    <path d="M936 366h84" stroke="#3E7E5C" stroke-width="9"/>
+    <path d="M884 396h108" stroke="#62D989" stroke-width="9"/>
+    <path d="M884 426h64" stroke="#F3A8C4" stroke-width="9" opacity="0.85"/>
+    <path d="M960 426h72" stroke="#3E7E5C" stroke-width="9"/>
+    <path d="M904 456h96" stroke="#62D989" stroke-width="9"/>
+    <path d="M884 486h140" stroke="#3E7E5C" stroke-width="9"/>
+    <path d="M864 516h76" stroke="#8AF0A7" stroke-width="9"/>
+    <path d="M952 516h40" stroke="#F3A8C4" stroke-width="9" opacity="0.7"/>
+    <path d="M864 546h52" stroke="#3E7E5C" stroke-width="9"/>
+  </g>
+  <!-- cursor -->
+  <rect x="928" y="538" width="12" height="20" fill="#8AF0A7"/>
+  <!-- stand -->
+  <path d="M978 608h44l10 62h-64z" fill="#161D20"/>
+  <rect x="930" y="670" width="140" height="16" rx="8" fill="#1B2427"/>
+
+  <!-- keyboard -->
+  <path d="M654 664h242l24 36H630z" fill="#1B2427"/>
+  <path d="M676 676h196l10 14H666z" fill="#0F1416" opacity="0.8"/>
+
+  <!-- mouse -->
+  <rect x="1216" y="662" width="46" height="38" rx="19" fill="#1B2427"/>
+
+  <!-- mug -->
+  <path d="M1290 700v-70h74v70z" fill="#B85B78"/>
+  <path d="M1364 646h18a22 22 0 0 1 0 44h-18" fill="none" stroke="#B85B78" stroke-width="12"/>
+  <path d="M1300 616c-12-18 12-28 0-46M1326 610c-12-20 12-30 0-48M1352 618c-10-16 10-26 0-42" stroke="#8AF0A7" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.45"/>
+
+  <!-- plant -->
+  <path d="M150 700v-62h84v62z" fill="#232B2E"/>
+  <path d="M192 638c0-46-22-74-52-86 28-6 52 12 52 40 0-34 22-56 52-56-18 18-24 40-24 62" fill="#2F9E5B" opacity="0.9"/>
+  <path d="M192 640c6-30 26-46 52-48-14 14-20 30-22 48" fill="#3FB56D" opacity="0.75"/>
+
+  <!-- sketchbook -->
+  <path d="M250 664h150l14 36H236z" fill="#242C2F"/>
+  <path d="M286 678h84" stroke="#62D989" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- glitch pixels drifting off the screen -->
+  <g fill="#62D989">
+    <rect x="1200" y="330" width="26" height="26" opacity="0.55"/>
+    <rect x="1244" y="392" width="16" height="16" opacity="0.4"/>
+    <rect x="1188" y="452" width="20" height="20" opacity="0.3"/>
+    <rect x="1256" y="300" width="12" height="12" opacity="0.5"/>
+    <rect x="1216" y="520" width="18" height="18" opacity="0.25"/>
+    <rect x="770" y="286" width="16" height="16" opacity="0.35"/>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#8AF0A7">
+    <path d="M0-22C3.4-7 7-3.4 22 0 7 3.4 3.4 7 0 22-3.4 7-7 3.4-22 0-7-3.4-3.4-7 0-22Z" transform="translate(700 150)" opacity="0.5"/>
+    <path d="M0-14C2.2-4.5 4.5-2.2 14 0 4.5 2.2 2.2 4.5 0 14-2.2 4.5-4.5 2.2-14 0-4.5-2.2-2.2-4.5 0-14Z" transform="translate(1320 214)" opacity="0.4"/>
+    <path d="M0-16C2.5-5 5-2.5 16 0 5 2.5 2.5 5 0 16-2.5 5-5 2.5-16 0-5-2.5-2.5-5 0-16Z" transform="translate(240 250)" opacity="0.35"/>
+  </g>
+</svg>

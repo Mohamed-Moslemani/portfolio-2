@@ -31,6 +31,7 @@ in `src/data/`:
 | `skills.js`     | hero stack rail + the grouped toolkit                          |
 | `interests.js`  | the interest selector in About                                 |
 | `techIcons.js`  | logo / glyph for each toolkit entry                            |
+| `scene.js`      | the background illustration and how strongly it shows          |
 
 ### Adding real artwork
 
@@ -79,10 +80,11 @@ gets its own.
 scroll handlers. Everything nonessential is disabled under
 `prefers-reduced-motion`.
 
-**Artwork.** `MangaPanel` (the hero), `BackgroundScene` (the ambient layer
-behind every page) and `ArtPlaceholder` are original SVG, drawn from theme
-tokens so they recolour with the theme. No stock or licensed imagery ships with
-the site.
+**Artwork.** All of it is original. `MangaPanel` (the hero) and
+`ArtPlaceholder` are inline SVG drawn from theme tokens, so they recolour with
+the theme. The background illustration is a standalone file,
+`public/scene/coding.svg`, configured in `src/data/scene.js` and editable in any
+vector tool. No stock or licensed imagery ships with the site.
 
 **Toolkit logos.** Brand marks come from Simple Icons (CC0); only the twenty
 actually used are vendored into `src/data/techIcons.js`, so there is no runtime

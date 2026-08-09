@@ -93,107 +93,45 @@
   }
 }
 
-/* ---- the drawing --------------------------------------------------- */
+/* ---- the illustration ------------------------------------------- */
 
 .scene__art {
   position: absolute;
-  right: -2vw;
-  bottom: -4vh;
-  width: min(760px, 62vw);
+  right: 0;
+  bottom: 0;
+  width: min(74vw, 1060px);
   height: auto;
-  color: var(--fg-primary);
-  opacity: 0.14;
+  object-fit: contain;
+  opacity: var(--art-opacity, 0.2);
+  /* The image is flush with the bottom-right of the viewport, so only
+     its top and left edges are ever visible. Fading exactly those two
+     dissolves the rectangle without eating into the subject, which a
+     corner radial does. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, #000 26%),
+    linear-gradient(to right, transparent, #000 22%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent, #000 26%),
+    linear-gradient(to right, transparent, #000 22%);
+  mask-composite: intersect;
+  animation: art-float 18s ease-in-out infinite;
+  will-change: transform;
 }
 
+/* The artwork is drawn dark, so on warm paper it needs to sit back
+   further than it does on a dark page. */
 [data-theme='light'] .scene__art {
-  color: var(--accent-dark);
-  opacity: 0.16;
+  opacity: calc(var(--art-opacity, 0.2) * 0.62);
 }
 
-/* The whole figure breathes, very slightly. */
-.scene__float {
-  animation: scene-float 14s ease-in-out infinite;
-  transform-origin: 50% 90%;
-}
-
-@keyframes scene-float {
+@keyframes art-float {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-9px);
-  }
-}
-
-/* Screen light, as if something just rendered. */
-.scene__screen {
-  color: var(--accent);
-  animation: screen-glow 7s ease-in-out infinite;
-}
-
-@keyframes screen-glow {
-  0%,
-  100% {
-    fill-opacity: 0.1;
-  }
-  42% {
-    fill-opacity: 0.3;
-  }
-  46% {
-    fill-opacity: 0.16;
-  }
-  60% {
-    fill-opacity: 0.26;
-  }
-}
-
-.scene__hair {
-  color: var(--accent);
-}
-
-/* Steam rises and fades, each wisp offset from the last. */
-.scene__steam path {
-  animation: steam-rise 5.5s ease-in-out infinite;
-  animation-delay: calc(var(--s) * 1.3s);
-  transform-box: fill-box;
-  transform-origin: bottom center;
-}
-
-@keyframes steam-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(6px) scaleY(0.7);
-  }
-  35% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-16px) scaleY(1.2);
-  }
-}
-
-/* ---- sparkles -------------------------------------------------------- */
-
-.scene__sparkles path {
-  color: var(--accent);
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: sparkle-twinkle 6s ease-in-out infinite;
-  animation-delay: var(--d);
-  opacity: 0;
-}
-
-@keyframes sparkle-twinkle {
-  0%,
-  100% {
-    opacity: 0;
-    scale: 0.4;
-  }
-  50% {
-    opacity: 0.9;
-    scale: 1;
+    transform: translateY(-14px);
   }
 }
 
@@ -201,14 +139,8 @@
 
 @media (max-width: 900px) {
   .scene__art {
-    width: 118vw;
-    right: -34vw;
-    bottom: -2vh;
-    opacity: 0.09;
-  }
-
-  [data-theme='light'] .scene__art {
-    opacity: 0.11;
+    width: 132vw;
+    right: -26vw;
   }
 
   .scene__field {
@@ -218,14 +150,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .scene__field,
-  .scene__float,
-  .scene__screen,
-  .scene__steam path,
-  .scene__sparkles path {
+  .scene__art {
     animation: none;
-  }
-
-  .scene__sparkles path {
-    opacity: 0.6;
   }
 }

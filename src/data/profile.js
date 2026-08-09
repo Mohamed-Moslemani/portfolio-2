@@ -16,11 +16,10 @@ export const profile = {
 
   email: 'janajaffal86@gmail.com',
 
-  /* Deliberately NOT rendered anywhere on the site. Kept here only so
-     it lives with the rest of the contact data. Set `phonePublic` to
-     true if Jana ever decides she wants it on the page. */
-  phone: '70036592',
-  phonePublic: false,
+  /* No phone number here on purpose. Anything in this object is
+     imported by components, so it ends up in the public JS bundle
+     whether or not it is rendered. Contact details that should stay
+     private belong on the CV, not in the source. */
 
   status: {
     label: 'currently',
