@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
@@ -14,8 +14,19 @@ if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   }
 }
 
-createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root')
+const tree = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+/* The build pre-renders each route into the HTML. When that markup is
+   present we hydrate it, so the text a crawler sees is the same text
+   the visitor sees, with no re-paint. `npm run dev` serves an empty
+   root, so it takes the createRoot path. */
+if (container.hasChildNodes()) {
+  hydrateRoot(container, tree)
+} else {
+  createRoot(container).render(tree)
+}

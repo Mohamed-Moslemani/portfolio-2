@@ -412,15 +412,21 @@ body::after {
 /* ---- scroll reveal (driven by useScrollAnimation) -------------- */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
   transition:
     opacity var(--t-slow) var(--ease-out),
     transform var(--t-slow) var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.reveal.is-visible {
+/* Scoped to html.js on purpose: without JavaScript nothing would ever
+   add .is-visible, and the whole page would stay invisible. This is
+   also what makes the pre-rendered HTML readable to crawlers. */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+html.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chromium --headless --disable-gpu --hide-scrollbars --no-sandbox --blink-settings=scriptEnabled=false --window-size=1440,1100 --virtual-time-budget=5000 --screenshot=/tmp/nojs.png http://127.0.0.1:4188/)",
+      "Bash(chromium --headless --disable-gpu --hide-scrollbars --no-sandbox --blink-settings=scriptEnabled=false --window-size=1440,1100 --virtual-time-budget=5000 --screenshot=nojs.png http://127.0.0.1:4188/)"
+    ]
+  }
+}

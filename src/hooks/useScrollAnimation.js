@@ -32,7 +32,10 @@ const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 export function useScrollAnimation() {
-  const [isVisible, setIsVisible] = useState(() => prefersReducedMotion())
+  /* Always starts false so the server and the first client render
+     agree; the effect below flips it immediately under reduced
+     motion. */
+  const [isVisible, setIsVisible] = useState(false)
   const nodeRef = useRef(null)
 
   const ref = useCallback((node) => {

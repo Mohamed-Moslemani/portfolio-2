@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#F6F4EF" media="(prefers-color-scheme: light)" />
     <meta name="color-scheme" content="dark light" />
 
-    <!-- TODO: add <link rel="canonical" href="https://<domain>/" /> once the domain is known. -->
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Jana Jaffal" />
@@ -24,7 +24,11 @@
       content="Computer science graduate working across data, AI and software, and an artist whenever there's a pencil nearby."
     />
     <meta property="og:locale" content="en_US" />
-    <!-- TODO: add og:image (1200x630) and og:url once assets / domain exist. -->
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Jana Jaffal, software, data and art" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Jana Jaffal / Software, Data &amp; Art" />
@@ -32,6 +36,46 @@
       name="twitter:description"
       content="Computer science graduate working across data, AI and software, and an artist whenever there's a pencil nearby."
     />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og.png" />
+
+    <!-- Structured data. This is what a search engine reads for a name
+         query, so it mirrors src/data/profile.js: keep the two in step. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jana Jaffal",
+        "url": "%VITE_SITE_URL%/",
+        "image": "%VITE_SITE_URL%/og.png",
+        "jobTitle": "Data and AI Engineering Intern",
+        "description": "Computer science graduate based in Beirut working across data, AI and software, and an artist.",
+        "email": "mailto:janajaffal86@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Beirut",
+          "addressCountry": "LB"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "American University of Beirut"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Strategy& (PwC Network)"
+        },
+        "knowsAbout": [
+          "Data Engineering",
+          "Databricks",
+          "Apache Spark",
+          "PySpark",
+          "Python",
+          "Machine Learning",
+          "Software Engineering",
+          "Illustration"
+        ],
+        "sameAs": ["https://www.linkedin.com/in/jana-jaffal-386189344/"]
+      }
+    </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,6 +102,10 @@
                   ? 'light'
                   : 'dark'
           document.documentElement.setAttribute('data-theme', theme)
+          // Scroll reveals and the intro loader hide content until JS
+          // moves them. This class is what turns them on, so a page
+          // rendered without JS shows everything immediately.
+          document.documentElement.classList.add('js')
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark')
         }

@@ -6,8 +6,9 @@ framework, no CSS framework, three runtime dependencies.
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # production build into dist/
+npm run build    # client bundle, SSR bundle, then sitemap + pre-render
 npm run preview  # serve the build
+npm run og       # regenerate public/og.png, the social share card
 npm run lint
 ```
 
@@ -92,10 +93,61 @@ dependency. Anything that is not a brand (SQL, algorithms, linear algebra) gets
 a stroke glyph from the same file. `iconFor(name)` falls back to a lettered chip
 for anything unmapped, so adding a skill never breaks the layout.
 
-**Routes.** `/art`, `/art/:slug` and the 404 are code-split with `React.lazy`.
-`vercel.json` rewrites all paths to `index.html` for client-side routing.
+**Routes.** Every route is pre-rendered to a static file at build time, so
+`/art` is a real `dist/art/index.html`. Vercel serves those directly; the
+catch-all rewrite in `vercel.json` only handles URLs that do not exist, which
+the SPA turns into the 404 page.
 
 ---
+
+---
+
+## SEO
+
+`npm run build` runs three steps: the client bundle, an SSR bundle, then
+`scripts/postbuild.mjs`, which:
+
+- writes `dist/sitemap.xml` from the actual route list, so it cannot drift
+- **pre-renders every route** with `renderToString`, replacing the empty
+  `<div id="root">` with the real markup
+
+That last one matters. Before it, the shipped HTML contained zero words: every
+crawler had to execute JavaScript to see anything, and a new site waits at the
+back of that queue. Now the HTML carries ~7.5k characters of text on first
+byte, and `main.jsx` hydrates it rather than throwing it away.
+
+Two consequences worth knowing:
+
+- Scroll reveals and the intro loader are gated on an `html.js` class set by the
+  boot script. Without it, `.reveal` never gets `.is-visible` and the page would
+  render invisible. Anything new that hides itself until JavaScript moves it
+  must be gated the same way.
+- The art routes are no longer `React.lazy`. They were ~6 kB combined, not worth
+  a Suspense fallback flashing over pre-rendered content.
+
+Also in place: `<link rel="canonical">`, Open Graph and Twitter tags pointing at
+`public/og.png`, a generated `robots.txt`, and a JSON-LD `Person` block in
+`index.html` with `sameAs` pointing at LinkedIn. That block mirrors
+`src/data/profile.js` by hand, so change both together.
+
+### The domain lives in one place
+
+`.env` holds `VITE_SITE_URL`, and everything absolute derives from it:
+
+- Vite substitutes `%VITE_SITE_URL%` into `index.html` (canonical, `og:url`,
+  `og:image`, `twitter:image`, JSON-LD)
+- `scripts/postbuild.mjs` reads it for `sitemap.xml` and writes `robots.txt`
+- `scripts/make-og-image.mjs` reads it for the host printed on the share card
+
+Changing domains is one line in `.env`, then `npm run og && npm run build`.
+`robots.txt` is generated rather than kept in `public/`, because files in
+`public/` are copied verbatim and would not get the substitution.
+
+Regenerate the share card after editing the name, tagline or artwork:
+
+```bash
+npm run og
+```
 
 ## Accessibility notes
 
